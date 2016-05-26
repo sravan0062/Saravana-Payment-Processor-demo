@@ -1,0 +1,24 @@
+
+The code is organized as follows
+
+ #Controller
+ 	PaymentsController
+
+ #Model
+ 	PaymentDetails
+	ValidatePayment
+ 	TransactionResult
+
+ #providers
+ 	PaymentGatewayProcessor
+ 	_IPaymentGatewayProvider
+ 	IExpensivePaymentGatewayProvider
+ 	IPremiumPaymentGatewayProvider
+        ICheapPaymentGatewayProvider
+
+#Front end Test Web page:
+ 	QueryWebApi.html [Simple Jquery]
+
+
+#Additional code
+    DemoFormPage[bootstrap]
