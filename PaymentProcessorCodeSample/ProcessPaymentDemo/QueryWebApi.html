@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <style>
+        .btn {
+            background: #3498db;
+            background-image: -webkit-linear-gradient(top, #3498db, #3498db);
+            background-image: -moz-linear-gradient(top, #3498db, #3498db);
+            background-image: -ms-linear-gradient(top, #3498db, #3498db);
+            background-image: -o-linear-gradient(top, #3498db, #3498db);
+            background-image: linear-gradient(to bottom, #3498db, #3498db);
+            font-family: Arial;
+            color: #ffffff;
+            font-size: 20px;
+            padding: 10px 20px 10px 20px;
+            text-decoration: none;
+        }
+
+
+
+        .btn_red {
+            background: #FF3366;
+            background-image: -webkit-linear-gradient(top, #FF3366, #FF3366);
+            background-image: -moz-linear-gradient(top, #FF3366, #FF3366);
+            background-image: -ms-linear-gradient(top, #FF3366, #FF3366);
+            background-image: -o-linear-gradient(top, #FF3366, #FF3366);
+            background-image: linear-gradient(to bottom, #FF3366, #FF3366);
+            font-family: Arial;
+            color: #ffffff;
+            font-size: 20px;
+            padding: 10px 20px 10px 20px;
+            text-decoration: none;
+        }
+
+
+
+        .btn:hover {
+            background: #3cb0fd;
+            background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+            background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+            background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+            background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+            background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+            text-decoration: none;
+        }
+
+        div {
+            width: 600px;
+            height: 400px;
+            background-color: white;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+
+
+
+        function action_button_valid() {
+
+            var person = { CreditCardNumber: "1234567890123456", CardHolder: "James Mathew", ExpirationDate: "12/12/2017", SecurityCode: "777", Amount: "990" }
+            $.ajax({
+                type: 'POST',
+                url: '/api/Payments/ProcessPaymentJSONAppVersion1/',
+                data: JSON.stringify(person),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) { console.log(data) }
+            });
+        }
+
+
+        function action_button_invalid1() {
+
+            var person = { CreditCardNumber: "1234567890123456", CardHolder: "", ExpirationDate: "12/12/2017", SecurityCode: "777", Amount: "990" }
+            $.ajax({
+                type: 'POST',
+                url: '/api/Payments/ProcessPaymentJSONAppVersion1/',
+                data: JSON.stringify(person),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) { console.log(data) }
+            });
+        }
+
+        function action_button_invalid2() {
+
+            var person = { CreditCardNumber: "1234567890123456", CardHolder: "James Mathew", ExpirationDate: "12/12/2017", SecurityCode: "777", Amount: "-99" }
+            $.ajax({
+                type: 'POST',
+                url: '/api/Payments/ProcessPaymentJSONAppVersion1/',
+                data: JSON.stringify(person),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) { console.log(data) }
+            });
+        }
+
+    </script>
+</head>
+<body>
+
+
+    <div>
+
+        <button class="btn" onclick='action_button_valid();'>   Click to process your Payment -   Valid data</button>
+
+        <button class="btn_red" onclick='action_button_invalid1();'>   Click to process your Payment  - Invalid data</button>
+
+
+        <button class="btn_red" onclick='action_button_invalid2();'>   Click to process your Payment - Invalid data</button>
+
+    </div>
+</body>
+
+
+
+</body>
